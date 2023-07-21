@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import { Admin, Resource } from 'react-admin';
+import lb4Provider from "react-admin-lb4";
+import UserList from "./components/UserList";
+import ServiceList from "./components/ServiceList";
+import OptionList from "./components/OptionList";
+import ServiceEdit from "./components/ServiceEdit";
+import OptionEdit from "./components/OptionEdit";
+// import ServiceCreate from "./components/ServiceCreate";
+// import OptionCreate from "./components/OptionCreate";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Admin dataProvider={lb4Provider(' https://localhost:8089/api')}>
+      <Resource name='user' list={UserList}></Resource>
+      <Resource name='service' list={ServiceList} edit={ServiceEdit} ></Resource>
+      <Resource name='option' list={OptionList} edit={OptionEdit} ></Resource>
+
+    </Admin>
   );
 }
 
